@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Competition extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'year',
+        'languages',
+        'right_ans',
+        'wrong_ans',
+        'empty_ans',
+    ];
 }
