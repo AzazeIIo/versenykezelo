@@ -15,6 +15,11 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    @if (Auth::user()->is_admin)
+                        <div>
+                            You are an admin.
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
