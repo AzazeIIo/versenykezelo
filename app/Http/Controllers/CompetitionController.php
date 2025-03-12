@@ -35,7 +35,7 @@ class CompetitionController extends Controller
         $fields['name'] = strip_tags($fields['name']);
         $fields['year'] = strip_tags($fields['year']);
         Competition::create($fields);
-        return redirect('/home');
+        //return redirect('/home');
     }
 
     /**
