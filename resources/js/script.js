@@ -1,8 +1,10 @@
 const submitBtn = document.getElementById("submit");
 
-submitBtn.onclick = function(e) {
-    e.preventDefault();
-    postNewComp();
+if(submitBtn !== null) {
+    submitBtn.onclick = function(e) {
+        e.preventDefault();
+        postNewComp();
+    }
 }
 
 function postNewComp() {
@@ -14,13 +16,15 @@ function postNewComp() {
             "year": $("#year").val()
         },
         url: "/home",
-        })/*.done(function( msg ) {
-        if(msg.error == 0){
-            //$('.sucess-status-update').html(msg.message);
-            alert(msg.message);
-        }else{
-            alert(msg.message);
-            //$('.error-favourite-message').html(msg.message);
+        error:function(err){
+            console.log(JSON.stringify(err));
+
+            let error = err.responseJSON;
+            let errorMsgContainer = $("#errorMsgContainer");
+            errorMsgContainer.html("");
+            $.each(error.errors, function (index, value) {
+                errorMsgContainer.append("<span class='text-danger'>" + value + "<span><br>");
+            });
         }
-    })*/;
+    });
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Competition;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCompetitionRequest;
 
 class CompetitionController extends Controller
 {
@@ -26,12 +27,9 @@ class CompetitionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCompetitionRequest $request)
     {
-        $fields = $request->validate([
-            'name' => 'required',
-            'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1)
-        ]);
+        $fields = $request->validated();
         $fields['name'] = strip_tags($fields['name']);
         $fields['year'] = strip_tags($fields['year']);
         Competition::create($fields);

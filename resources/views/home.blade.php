@@ -21,6 +21,7 @@
                         </div>
                         <div>
                             <h2>New competition</h2>
+                            <div id="errorMsgContainer"></div>
                             <form method="POST">
                                 @csrf
 
