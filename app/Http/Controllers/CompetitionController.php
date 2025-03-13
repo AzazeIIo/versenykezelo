@@ -16,19 +16,10 @@ class CompetitionController extends Controller
     public function index()
     {
         $competitions = Competition::with('rounds')->get()->reverse();
-        $rounds = Round::with('competitions')->get();
-
         
         return View::make('Competitions.index')->with([
             'competitions' => $competitions,
-            'rounds' => $rounds
         ]);
-    }
-
-    public function rounds($competition_id)
-    {
-        $rounds = Round::with('competitions')->get();
-        return $rounds;
     }
 
     /**
@@ -49,11 +40,7 @@ class CompetitionController extends Controller
      */
     public function show(string $id)
     {
-        $competition = Competition::find($id);
-        if(isset($competition)) {
-            return View::make('Competitions.show')->with('competition', $competition);
-        }
-        return redirect('/competitions');
+        return redirect("competitions/" . $id . "/rounds");
     }
 
     /**

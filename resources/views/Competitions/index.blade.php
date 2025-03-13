@@ -65,7 +65,7 @@
                     @endif
                     <div id="competition_list">
                         @foreach($competitions as $competition)
-                            <h3><a href="/competitions/{{$competition['id']}}">{{ $competition['name'] }} – {{ $competition['year'] }}</a></h3>
+                            <h3><a href="/competitions/{{$competition['id']}}/rounds">{{ $competition['name'] }} – {{ $competition['year'] }}</a></h3>
                             @foreach($competition['rounds'] as $round)
                                 <p>Round {{$round['round_number']}} – {{$round['date']}}</p>
                             @endforeach

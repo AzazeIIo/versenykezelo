@@ -1,10 +1,36 @@
 const submitBtn = document.getElementById("submit");
+const newRoundSubmit = document.getElementById("newRoundSubmit");
 
 if(submitBtn !== null) {
     submitBtn.onclick = function(e) {
         e.preventDefault();
         postNewComp();
     }
+}
+
+if(newRoundSubmit !== null) {
+    newRoundSubmit.onclick = function(e) {
+        e.preventDefault();
+        postNewRound();
+    }
+}
+
+function postNewRound() {
+    $.ajax({
+        method: "POST",
+        data: {
+            "_token": $("#token").val(),
+            "round_number": $("#round_number").val(),
+            "date": $("#date").val()
+        },
+        url: $("#route").val(),
+        error:function(err) {
+            console.log(err);
+        },
+        success:function(result) {
+            console.log("success");
+        }  
+    });
 }
 
 function postNewComp() {

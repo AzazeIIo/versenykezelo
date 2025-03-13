@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Round;
+use App\Models\Competition;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRoundRequest;
+use View;
 
 class RoundController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($competition_id)
     {
-        //
+        $competition = Competition::find($competition_id);
+        
+        if(isset($competition)) {
+            $rounds = $competition->rounds()->get();
+            return View::make('Rounds.index')->with([
+                'competition' => $competition,
+                'rounds' => $rounds
+            ]);
+        }
+        return redirect('/competitions');
     }
 
     /**
@@ -26,9 +38,16 @@ class RoundController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store($competition_id, StoreRoundRequest $request)
     {
-        //
+        //dd($request->all());
+        $fields = $request->validated();
+        $fields['competition_id'] = $competition_id;
+        $fields['round_number'] = strip_tags($fields['round_number']);
+        $fields['date'] = strip_tags($fields['date']);
+        $round = Round::create($fields);
+        return response()->json([$round]);
+        //return redirect('/home');
     }
 
     /**
