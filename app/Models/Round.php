@@ -16,4 +16,9 @@ class Round extends Model
     {
         return $this->belongsTo(Competition::class, 'competition_id');
     }
+
+    public function competitors()
+    {
+        return $this->hasMany(Competitor::class);
+    }
 }
