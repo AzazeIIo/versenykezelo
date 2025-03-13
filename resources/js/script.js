@@ -27,7 +27,7 @@ function postNewComp() {
         success:function(result) {
             $("#name").val("");
             $("#year").val("");
-            $("#competition_list").prepend("<h3>" + result[0].name + " – " + result[0].year + "</h3>");
+            $("#competition_list").prepend("<h3><a href='/competitions/" + result[0].id + "'>" + result[0].name + " – " + result[0].year + "</a></h3>");
         }
     });
 }

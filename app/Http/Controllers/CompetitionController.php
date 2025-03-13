@@ -47,9 +47,13 @@ class CompetitionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Competition $competition)
+    public function show(string $id)
     {
-        //
+        $competition = Competition::find($id);
+        if(isset($competition)) {
+            return View::make('Competitions.show')->with('competition', $competition);
+        }
+        return redirect('/competitions');
     }
 
     /**
