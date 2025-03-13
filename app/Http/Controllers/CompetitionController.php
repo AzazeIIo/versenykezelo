@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Competition;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompetitionRequest;
+use View;
 
 class CompetitionController extends Controller
 {
@@ -13,15 +14,9 @@ class CompetitionController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $competitions = Competition::all()->reverse();
+        
+        return View::make('Competitions.index')->with('competitions', $competitions);
     }
 
     /**
@@ -32,7 +27,8 @@ class CompetitionController extends Controller
         $fields = $request->validated();
         $fields['name'] = strip_tags($fields['name']);
         $fields['year'] = strip_tags($fields['year']);
-        Competition::create($fields);
+        $competition = Competition::create($fields);
+        return response()->json([$competition]);
         //return redirect('/home');
     }
 

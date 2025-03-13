@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Competitions') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,16 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
-                    @if (Auth::user()->is_admin)
+                    @if(auth()->check() && auth()->user()->is_admin)
                         <div>
                             You are an admin.
                         </div>
                         <div>
                             <h2>New competition</h2>
                             <div id="errorMsgContainer"></div>
-                            <form method="POST">
+                            <form method="POST" id="form">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -65,11 +63,9 @@
                             </form>
                         </div>
                     @endif
-                    <div>
-                        <h2>Competitions</h2>
+                    <div id="competition_list">
                         @foreach($competitions as $competition)
                             <h3>{{ $competition['name'] }} – {{ $competition['year'] }}</h3>
-
                         @endforeach
                     </div>
                 </div>
