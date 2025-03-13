@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competition;
+use App\Models\Round;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompetitionRequest;
 use View;
@@ -14,9 +15,20 @@ class CompetitionController extends Controller
      */
     public function index()
     {
-        $competitions = Competition::all()->reverse();
+        $competitions = Competition::with('rounds')->get()->reverse();
+        $rounds = Round::with('competitions')->get();
+
         
-        return View::make('Competitions.index')->with('competitions', $competitions);
+        return View::make('Competitions.index')->with([
+            'competitions' => $competitions,
+            'rounds' => $rounds
+        ]);
+    }
+
+    public function rounds($competition_id)
+    {
+        $rounds = Round::with('competitions')->get();
+        return $rounds;
     }
 
     /**

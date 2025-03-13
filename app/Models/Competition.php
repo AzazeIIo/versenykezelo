@@ -14,4 +14,8 @@ class Competition extends Model
         'wrong_ans',
         'empty_ans',
     ];
+
+    public function rounds() {
+        return $this->hasMany(Round::class);
+    }
 }

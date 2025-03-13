@@ -11,4 +11,9 @@ class Round extends Model
         'round_number',
         'date',
     ];
+
+    public function competitions()
+    {
+        return $this->belongsTo(Competition::class, 'competition_id');
+    }
 }
