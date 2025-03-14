@@ -11,7 +11,7 @@ class StoreCompetitorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::user()->is_admin;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreCompetitorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            Rule::unique('competitors', 'user_id')->where('round_number', $this->request->get('round_number'))
         ];
     }
 }

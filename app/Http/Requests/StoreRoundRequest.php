@@ -26,6 +26,8 @@ class StoreRoundRequest extends FormRequest
         return [
             'round_number' => [
                 'required',
+                'max:11',
+                Rule::unique('rounds', 'round_number')->where('competition_id', $this->request->get('competition_id'))
             ],
             'date' => 'required',
         ];

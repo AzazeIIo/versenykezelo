@@ -20,6 +20,7 @@ function postNewRound() {
         method: "POST",
         data: {
             "_token": $("#token").val(),
+            "competition_id": $("#competition_id").val(),
             "round_number": $("#round_number").val(),
             "date": $("#date").val()
         },
