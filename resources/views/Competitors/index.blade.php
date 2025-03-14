@@ -17,6 +17,7 @@
                         <div>
                             <div>
                                 You are an admin.
+                                teszt
                             </div>
                             <div>
                                 <h2>New round</h2>
@@ -69,8 +70,8 @@
                         </div>
                     @endif
                     <div id="round_list">
-                        @foreach($rounds as $round)
-                            <h3><a href="/competitions/{{$competition['id']}}/rounds/{{$round['id']}}/competitors">Round {{$round['round_number']}} – {{$round['date']}}</a></h3>
+                        @foreach($users as $user)
+                            <h3><a href="/competitions/{{$competition['id']}}/rounds">{{$user}}</a></h3>
                         @endforeach
                     </div>
                 </div>

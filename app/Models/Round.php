@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Round extends Model
 {
@@ -20,5 +21,10 @@ class Round extends Model
     public function competitors()
     {
         return $this->hasMany(Competitor::class);
+    }
+
+    public function users()
+    {
+        return $this->through('competitors')->has('users');
     }
 }

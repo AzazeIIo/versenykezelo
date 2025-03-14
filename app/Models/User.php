@@ -49,7 +49,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function competitor()
+    public function competitors()
     {
         return $this->hasMany(Competitor::class);
     }

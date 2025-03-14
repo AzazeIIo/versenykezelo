@@ -30,9 +30,9 @@ class RoundController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($competition_id)
     {
-        //
+        return redirect("competitions/" . $competition_id . "/rounds");
     }
 
     /**
@@ -40,22 +40,20 @@ class RoundController extends Controller
      */
     public function store($competition_id, StoreRoundRequest $request)
     {
-        //dd($request->all());
         $fields = $request->validated();
         $fields['competition_id'] = $competition_id;
         $fields['round_number'] = strip_tags($fields['round_number']);
         $fields['date'] = strip_tags($fields['date']);
         $round = Round::create($fields);
         return response()->json([$round]);
-        //return redirect('/home');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Round $round)
+    public function show($competition_id, $round_id)
     {
-        //
+        return redirect("competitions/" . $competition_id . "/rounds/" . $round_id . "/competitors");
     }
 
     /**

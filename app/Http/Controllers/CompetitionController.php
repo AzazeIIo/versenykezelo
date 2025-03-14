@@ -23,6 +23,14 @@ class CompetitionController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return redirect("competitions");
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreCompetitionRequest $request)
@@ -32,7 +40,6 @@ class CompetitionController extends Controller
         $fields['year'] = strip_tags($fields['year']);
         $competition = Competition::create($fields);
         return response()->json([$competition]);
-        //return redirect('/home');
     }
 
     /**
