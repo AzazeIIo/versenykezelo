@@ -67,8 +67,12 @@
                                 </form>
                             </div>
                         </div>
-                        {{$rounds}}
                     @endif
+                    <div id="round_list">
+                        @foreach($rounds as $round)
+                            <h3><a href="/competitions/{{$competition['id']}}/rounds">Round {{$round['round_number']}} – {{$round['date']}}</a></h3>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

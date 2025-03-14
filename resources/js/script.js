@@ -25,10 +25,17 @@ function postNewRound() {
         },
         url: $("#route").val(),
         error:function(err) {
-            console.log(err);
+            let error = err.responseJSON;
+            let errorMsgContainer = $("#errorMsgContainer");
+            errorMsgContainer.html("");
+            $.each(error.errors, function (index, value) {
+                errorMsgContainer.append("<span class='text-danger'>" + value + "<span><br>");
+            });
         },
         success:function(result) {
-            console.log("success");
+            $("#round_number").val("");
+            $("#date").val("");
+            $("#round_list").append("<h3><a href='/competitions/" + result[0].competition_id + "/rounds'>Round " + result[0].round_number + " – " + result[0].date + "</a></h3>");
         }  
     });
 }
