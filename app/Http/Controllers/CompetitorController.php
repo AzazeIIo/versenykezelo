@@ -7,6 +7,7 @@ use App\Models\Competition;
 use App\Models\Round;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCompetitorRequest;
 use View;
 use DB;
 
@@ -22,13 +23,14 @@ class CompetitorController extends Controller
 
         if(isset($round[0])) {
             //$users = $round[0]->users()->get();
-            $users = User::join('competitors', 'users.id', '=', 'competitors.user_id')
+            $competitors = User::join('competitors', 'users.id', '=', 'competitors.user_id')
                     ->where('round_id', '=', $round_id)
                     ->get();
-            //dd($users);
+            $users = User::paginate(10);
             return View::make('Competitors.index')->with([
                 'competition' => $competition,
                 'round' => $round[0],
+                'competitors' => $competitors,
                 'users' => $users
             ]);
         }
@@ -38,17 +40,22 @@ class CompetitorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($competition_id, $round_id)
     {
-        //
+        return redirect("competitions/" . $competition_id . "/rounds/" . $round_id . "/competitors");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store($competition_id, $round_id, StoreCompetitorRequest $request)
     {
-        //
+        $fields = $request->validated();
+        $fields['user_id'] = strip_tags($fields['user_id']);
+        $fields['round_id'] = strip_tags($fields['round_id']);
+        $competitor = Competitor::create($fields);
+        $user = User::find($fields['user_id']);
+        return response()->json([$user]);
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StoreCompetitorRequest extends FormRequest
 {
@@ -22,7 +24,17 @@ class StoreCompetitorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Rule::unique('competitors', 'user_id')->where('round_number', $this->request->get('round_number'))
+            'user_id' => [
+                Rule::unique('competitors', 'user_id')->where('round_id', $this->request->get('round_id'))
+            ],
+            'round_id' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'user_id.unique' => 'The user has already been assigned to this round.'
         ];
     }
 }

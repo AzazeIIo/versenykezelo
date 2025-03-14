@@ -17,61 +17,38 @@
                         <div>
                             <div>
                                 You are an admin.
-                                teszt
                             </div>
                             <div>
-                                <h2>New round</h2>
+                                <h2>New competitor</h2>
                                 <div id="errorMsgContainer"></div>
-                                <form method="POST" id="form">
-                                    @csrf
-
-                                    <div class="row mb-3">
-                                        <label for="round_number" class="col-md-4 col-form-label text-md-end">{{ __('Round Number') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="round_number" type="number" class="form-control @error('round_number') is-invalid @enderror" name="round_number" value="{{ old('round_number') }}" required autocomplete="round_number" autofocus>
-
-                                            @error('round_number')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                <div class="container m-2">
+                                    @foreach ($users as $user)
+                                        <div class="row m-1">
+                                            <div class="col-4">
+                                                {{ $user['username'] }}
+                                            </div>
+                                            <div class="col-8">
+                                                <form method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="round_id" id="round_id" value="{{$round['id']}}">
+                                                    <input type="hidden" name="_route" id="route" value="{{ route('competitions.rounds.competitors.store', [$competition['id'], $round['id']]) }}">
+                                                    <button type="submit" id="{{ $user['id'] }}" class="btn btn-primary addBtn">
+                                                        Add
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="date" class="col-md-4 col-form-label text-md-end">{{ __('Date') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="date" type="date" class="form-control @error('date') is-invalid @enderror" name="date" required autocomplete="date">
-
-                                            @error('date')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-
-                                    <input type="hidden" name="_competition_id" id="competition_id" value="{{ $competition['id'] }}">
-                                    <input type="hidden" name="_route" id="route" value="{{ route('competitions.rounds.store', $competition['id']) }}">
-
-                                    <div class="row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                            <button id="newRoundSubmit" type="submit" class="btn btn-primary">
-                                                {{ __('Create') }}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                    @endforeach
+                                </div>
+                                {{$users->links()}}
                             </div>
                         </div>
                     @endif
-                    <div id="round_list">
-                        @foreach($users as $user)
-                            <h3><a href="/competitions/{{$competition['id']}}/rounds">{{$user}}</a></h3>
+                    <div id="competitor_list">
+                        <h3>Round {{$round['round_number']}} competitors</h3>
+                        @foreach($competitors as $user)
+                            <p>{{$user['username']}}</p>
                         @endforeach
                     </div>
                 </div>

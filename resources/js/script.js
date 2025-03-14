@@ -15,6 +15,32 @@ if(newRoundSubmit !== null) {
     }
 }
 
+$(".addBtn").each(function(index, obj) {
+    obj.onclick = function(e) {
+        e.preventDefault();
+        $.ajax({
+            method: "POST",
+            data: {
+                "_token": $("#token").val(),
+                "user_id": obj.id,
+                "round_id": $("#round_id").val(),
+            },
+            url: $("#route").val(),
+            error:function(err) {
+                let error = err.responseJSON;
+                let errorMsgContainer = $("#errorMsgContainer");
+                errorMsgContainer.html("");
+                $.each(error.errors, function (index, value) {
+                    errorMsgContainer.append("<span class='text-danger'>" + value + "<span><br>");
+                });
+            },
+            success:function(result) {
+                $("#competitor_list").append("<p>" + result[0].username + "</p>");
+            }  
+        });
+    }
+});
+    
 function postNewRound() {
     $.ajax({
         method: "POST",
