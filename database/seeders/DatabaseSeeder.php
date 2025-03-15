@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Competition;
+use App\Models\Round;
+use App\Models\Competitor;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,5 +27,18 @@ class DatabaseSeeder extends Seeder
         User::factory()
             ->count(50)
             ->create();
+
+        Competition::factory()
+            ->count(5)
+            ->create();
+
+        for($i = 0; $i < 25; $i++){
+            Round::factory()->create();
+        }
+
+        for($i = 0; $i < 200; $i++){
+            Competitor::factory()->create();
+        }
+
     }
 }
