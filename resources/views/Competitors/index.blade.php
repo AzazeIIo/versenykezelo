@@ -15,40 +15,56 @@
                     @endif
                     @if(auth()->check() && auth()->user()->is_admin)
                         <div>
-                            <div>
-                                You are an admin.
-                            </div>
-                            <div>
-                                <h2>New competitor</h2>
-                                <div id="errorMsgContainer"></div>
-                                <div class="container m-2">
-                                    @foreach ($users as $user)
-                                        <div class="row m-1">
-                                            <div class="col-4">
-                                                {{ $user['username'] }}
-                                            </div>
-                                            <div class="col-8">
-                                                <form method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                                    <input type="hidden" name="round_id" id="round_id" value="{{$round['id']}}">
-                                                    <input type="hidden" name="_route" id="route" value="{{ route('competitions.rounds.competitors.store', [$competition['id'], $round['id']]) }}">
-                                                    <button type="submit" id="{{ $user['id'] }}" class="btn btn-primary addBtn">
-                                                        Add
-                                                    </button>
-                                                </form>
-                                            </div>
+                            You are an admin.
+                        </div>
+                        <div>
+                            <h2>New competitor</h2>
+                            <div id="errorMsgContainer"></div>
+                            <div class="container">
+                                @foreach ($users as $user)
+                                    <div class="row m-1">
+                                        <div class="col-4">
+                                            {{ $user['username'] }}
                                         </div>
-                                    @endforeach
-                                </div>
-                                {{$users->links()}}
+                                        <div class="col-8">
+                                            <form method="POST">
+                                                @csrf
+                                                <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                                <input type="hidden" name="round_id" id="round_id" value="{{$round['id']}}">
+                                                <input type="hidden" name="_route" id="route" value="{{ route('competitions.rounds.competitors.store', [$competition['id'], $round['id']]) }}">
+                                                <button type="submit" id="{{ $user['id'] }}" class="btn btn-primary addBtn">
+                                                    Add
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
+                            {{$users->links()}}
                         </div>
                     @endif
-                    <div id="competitor_list">
+                    <div id="competitor_list" class="container">
                         <h3>Round {{$round['round_number']}} competitors</h3>
                         @foreach($competitors as $user)
-                            <p>{{$user['username']}}</p>
+                            <div class="row">
+                                <div class="col-4">
+                                    <p>{{$user['username']}}</p>
+                                </div>
+                                @if(auth()->check() && auth()->user()->is_admin)
+                                    <div class="col-8">
+                                        <form action="{{ route('competitions.rounds.competitors.destroy', [$competition, $round, $user]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                            <input type="hidden" name="competitor" id="competitor" value="{{$user}}">
+                                            <input type="hidden" name="_route" id="route" value="{{ route('competitions.rounds.competitors.store', [$competition['id'], $round['id']]) }}">
+                                            <button type="submit" id="delete{{ $user['id'] }}" class="btn btn-primary removeBtn">
+                                                Remove
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
                         @endforeach
                     </div>
                 </div>

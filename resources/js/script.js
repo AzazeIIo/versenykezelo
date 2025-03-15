@@ -62,7 +62,7 @@ function postNewRound() {
         success:function(result) {
             $("#round_number").val("");
             $("#date").val("");
-            $("#round_list").append("<h3><a href='/competitions/" + result[0].competition_id + "/rounds'>Round " + result[0].round_number + " – " + result[0].date + "</a></h3>");
+            $("#round_list").append("<h3><a href='/competitions/" + result[0].competition_id + "/rounds/" + result[0].id + "'>Round " + result[0].round_number + " – " + result[0].date + "</a></h3>");
         }  
     });
 }

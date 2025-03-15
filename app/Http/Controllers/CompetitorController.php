@@ -61,9 +61,9 @@ class CompetitorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Competitor $competitor)
+    public function show($competition_id, $round_id)
     {
-        //
+        return redirect("competitions/" . $competition_id . "/rounds/" . $round_id . "/competitors");
     }
 
     /**
@@ -85,8 +85,10 @@ class CompetitorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Competitor $competitor)
+    public function destroy($competition_id, $round_id, $competitor_id)
     {
-        //
+        $competitor = Competitor::find($competitor_id);
+        $success = $competitor->delete($competitor);
+        return $success;
     }
 }
