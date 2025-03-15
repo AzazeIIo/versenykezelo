@@ -30,6 +30,10 @@ class StoreCompetitionRequest extends FormRequest
                 Rule::unique('competitions', 'name')->where('year', $this->request->get('year'))
             ],
             'year' => 'bail|required|digits:4|integer|min:1900|max:'.(date('Y')+1),
+            'languages' => 'nullable',
+            'right_ans' => 'nullable',
+            'wrong_ans' => 'nullable',
+            'empty_ans' => 'nullable'
         ];
     }
 

@@ -38,6 +38,10 @@ class CompetitionController extends Controller
         $fields = $request->validated();
         $fields['name'] = strip_tags($fields['name']);
         $fields['year'] = strip_tags($fields['year']);
+        $fields['languages'] = strip_tags($fields['languages']);
+        $fields['right_ans'] = strip_tags($fields['right_ans']);
+        $fields['wrong_ans'] = strip_tags($fields['wrong_ans']);
+        $fields['empty_ans'] = strip_tags($fields['empty_ans']);
         $competition = Competition::create($fields);
         return response()->json([$competition]);
     }

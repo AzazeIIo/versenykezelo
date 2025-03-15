@@ -50,6 +50,62 @@
                                         @enderror
                                     </div>
                                 </div>
+                                
+                                <div class="row mb-3">
+                                    <label for="languages" class="col-md-4 col-form-label text-md-end">{{ __('Available languages') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="languages" type="text" class="form-control @error('languages') is-invalid @enderror" name="languages" required autocomplete="languages">
+
+                                        @error('languages')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <label for="right_ans" class="col-md-4 col-form-label text-md-end">{{ __('Points for right answer') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="right_ans" type="number" class="form-control @error('right_ans') is-invalid @enderror" name="right_ans" required autocomplete="right_ans">
+
+                                        @error('right_ans')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <label for="wrong_ans" class="col-md-4 col-form-label text-md-end">{{ __('Points for wrong answer') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="wrong_ans" type="number" class="form-control @error('wrong_ans') is-invalid @enderror" name="wrong_ans" required autocomplete="wrong_ans">
+
+                                        @error('wrong_ans')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <label for="empty_ans" class="col-md-4 col-form-label text-md-end">{{ __('Points for empty answer') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="empty_ans" type="number" class="form-control @error('empty_ans') is-invalid @enderror" name="empty_ans" required autocomplete="empty_ans">
+
+                                        @error('empty_ans')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 

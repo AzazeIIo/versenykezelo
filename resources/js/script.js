@@ -73,7 +73,11 @@ function postNewComp() {
         data: {
             "_token": $("#token").val(),
             "name": $("#name").val(),
-            "year": $("#year").val()
+            "year": $("#year").val(),
+            "languages": $("#languages").val(),
+            "right_ans": $("#right_ans").val(),
+            "wrong_ans": $("#wrong_ans").val(),
+            "empty_ans": $("#empty_ans").val(),
         },
         url: "/competitions",
         error:function(err) {
