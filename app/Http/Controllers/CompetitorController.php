@@ -55,7 +55,9 @@ class CompetitorController extends Controller
         $fields['round_id'] = strip_tags($fields['round_id']);
         $competitor = Competitor::create($fields);
         $user = User::find($fields['user_id']);
-        return response()->json([$user]);
+        return response()->json([$competitor, $user,
+            route('competitions.rounds.competitors.destroy',
+            [$competition_id, $round_id, $competitor['id']])]);
     }
 
     /**
@@ -88,7 +90,6 @@ class CompetitorController extends Controller
     public function destroy($competition_id, $round_id, $competitor_id)
     {
         $competitor = Competitor::find($competitor_id);
-        $success = $competitor->delete($competitor);
-        return $success;
+        $competitor->delete($competitor);
     }
 }
