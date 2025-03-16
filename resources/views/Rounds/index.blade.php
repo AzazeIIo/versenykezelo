@@ -21,7 +21,7 @@
                             <div>
                                 <h2>New round</h2>
                                 <div id="errorMsgContainer"></div>
-                                <form method="POST" id="form">
+                                <form method="POST" id="newRoundForm">
                                     @csrf
 
                                     <div class="row mb-3">

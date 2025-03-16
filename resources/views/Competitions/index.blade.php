@@ -20,7 +20,7 @@
                         <div>
                             <h2>New competition</h2>
                             <div id="errorMsgContainer"></div>
-                            <form method="POST" id="form">
+                            <form method="POST" id="newCompetitionForm">
                                 @csrf
 
                                 <div class="row mb-3">

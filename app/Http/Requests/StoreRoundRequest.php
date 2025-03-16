@@ -13,7 +13,7 @@ class StoreRoundRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->is_admin;
+        return (Auth::check() && Auth::user()->is_admin);
     }
 
     /**
@@ -24,6 +24,11 @@ class StoreRoundRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'competition_id' => [
+                'required',
+                'max:20',
+                'exists:competitions,id'
+            ],
             'round_number' => [
                 'required',
                 'max:11',

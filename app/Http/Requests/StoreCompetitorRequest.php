@@ -13,7 +13,7 @@ class StoreCompetitorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->is_admin;
+        return (Auth::check() && Auth::user()->is_admin);
     }
 
     /**

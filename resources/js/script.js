@@ -146,6 +146,10 @@ function postNewComp() {
             errorMsgContainer.html("");
             $("#name").val("");
             $("#year").val("");
+            $("#languages").val("");
+            $("#right_ans").val("");
+            $("#wrong_ans").val("");
+            $("#empty_ans").val("");
             $("#competition_list").prepend("<h3><a href='/competitions/" + result[0].id + "'>" + result[0].name + " – " + result[0].year + "</a></h3>");
         }
     });
