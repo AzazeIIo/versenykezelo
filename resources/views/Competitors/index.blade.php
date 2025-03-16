@@ -27,7 +27,7 @@
                                             {{ $user['username'] }}
                                         </div>
                                         <div class="col-8">
-                                            <form method="POST">
+                                            <form method="POST" class="newCompetitorForm">
                                                 @csrf
                                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="round_id" id="round_id" value="{{$round['id']}}">
@@ -52,7 +52,7 @@
                                 </div>
                                 @if(auth()->check() && auth()->user()->is_admin)
                                     <div class="col-8">
-                                        <form method="POST">
+                                        <form method="POST" class="removeCompetitorForm">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">

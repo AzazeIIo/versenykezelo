@@ -8,6 +8,7 @@ use App\Models\Round;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompetitorRequest;
+use App\Http\Requests\DestroyCompetitorRequest;
 use View;
 use DB;
 
@@ -87,8 +88,9 @@ class CompetitorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($competition_id, $round_id, $competitor_id)
+    public function destroy($competition_id, $round_id, $competitor_id, DestroyCompetitorRequest $request)
     {
+        $request->validated();
         $competitor = Competitor::find($competitor_id);
         $competitor->delete($competitor);
     }

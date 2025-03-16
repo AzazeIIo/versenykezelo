@@ -25,9 +25,14 @@ class StoreCompetitorRequest extends FormRequest
     {
         return [
             'user_id' => [
+                'required',
+                'exists:users,id',
                 Rule::unique('competitors', 'user_id')->where('round_id', $this->request->get('round_id'))
             ],
-            'round_id' => 'required'
+            'round_id' => [
+                'required',
+                'exists:rounds,id'
+            ]
         ];
     }
 

@@ -63,8 +63,7 @@ class RoundTest extends TestCase
 
     public function test_round_factory_is_working(): void
     {
-        $competition = Competition::factory()->create();
-
+        Competition::factory()->create();
         $round = Round::factory()->create();
  
         $this->assertModelExists($round);
@@ -91,7 +90,7 @@ class RoundTest extends TestCase
         $response->assertDontSee('newRoundForm');
     }
 
-    public function test_admin_can_see_new_competition_form(): void
+    public function test_admin_can_see_new_round_form(): void
     {
         $competition = Competition::factory()->create();
 

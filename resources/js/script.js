@@ -72,8 +72,7 @@ function removeCompetitor(e, obj) {
     $.ajax({
         type: "DELETE",
         data: {
-            "_token": $("#token").val(),
-            "user_id": obj.id.substring(3),
+            "_token": $("#token").val()
         },
         url: $("#delroute" + obj.id.substring(3)).val(),
         error:function(err) {
