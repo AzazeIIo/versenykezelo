@@ -57,7 +57,7 @@ function addCompetitor(obj) {
                     </div>
             </div>`).appendTo($("#competitor_list"));
             $(`#competitor${result[0].id}`)[0].onclick = function(e) {
-                removeCompetitor(e, $(`#del${result[0].id}`)[0]);
+                removeCompetitor($(`#del${result[0].id}`)[0]);
             }                
         }  
     });

@@ -74,6 +74,7 @@ class CompetitorTest extends TestCase
     public function test_competitor_factory_is_working(): void
     {
         $round = $this->insertTestRound();
+        User::factory()->create();
 
         $competitor = Competitor::factory()->create();
  
