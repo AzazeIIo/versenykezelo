@@ -29,10 +29,10 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Competition::factory()
-            ->count(5)
+            ->count(10)
             ->create();
 
-        for($i = 0; $i < 25; $i++){
+        for($i = 0; $i < 30; $i++){
             Round::factory()->create();
         }
 

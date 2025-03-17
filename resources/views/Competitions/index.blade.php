@@ -107,7 +107,7 @@
 
                                 <div class="row mb-0 ">
                                     <div class="col center">
-                                        <button id="submit" type="submit" class="btn btn-primary">
+                                        <button id="newCompetitionSubmit" type="submit" class="btn btn-primary">
                                             {{ __('Create') }}
                                         </button>
                                     </div>
@@ -117,7 +117,7 @@
                     @endif
                     <ul id="competition_list">
                         @if(count($competitions) == 0)
-                            <p>There are no competitions in the database yet.</p>
+                            <p  id="emptyList">There are no competitions in the database yet.</p>
                         @endif
                         @foreach($competitions as $competition)
                             <li><a href="/competitions/{{$competition['id']}}/rounds">{{ $competition['name'] }} – {{ $competition['year'] }}</a></li>

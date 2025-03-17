@@ -24,7 +24,7 @@ class RoundFactory extends Factory
         $competitionId = $randomCompetition['id'];
         $competitionYear = $randomCompetition['year'];
         $rounds = Round::where('competition_id', '=', $competitionId)->orderBy('round_number', 'desc')->select(['round_number', 'date'])->get();
-        $roundNumber = 0;
+        $roundNumber = 1;
         $date = fake()->dateTimeBetween($competitionYear. '-01-01', $competitionYear. '-12-31');
 
         if(count($rounds) != 0) {

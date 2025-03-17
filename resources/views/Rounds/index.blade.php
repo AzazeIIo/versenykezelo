@@ -74,9 +74,15 @@
                             </form>
                         </div>
                     @endif
+                    <div class="competitionData">
+                        <p>Available languages for this competition: {{ $competition['languages'] }}</p>
+                        <p>Points for a right answer: {{ $competition['right_ans'] }}</p>
+                        <p>Points for a wrong answer: {{ $competition['wrong_ans'] }}</p>
+                        <p>Points for a empty answer: {{ $competition['empty_ans'] }}</p>
+                    </div>
                     <ul id="round_list">
                         @if(count($rounds) == 0)
-                            <p>No round has been assigned to this competition yet.</p>
+                            <p id="emptyList">No round has been assigned to this competition yet.</p>
                         @endif
                         @foreach($rounds as $round)
                             <li><a href="/competitions/{{$competition['id']}}/rounds/{{$round['id']}}/competitors">Round {{$round['round_number']}} – {{$round['date']}}</a></li>

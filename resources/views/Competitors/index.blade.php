@@ -54,7 +54,7 @@
                     <div class="container">
                         <ul id="competitor_list">
                             @if(count($competitors) == 0)
-                                <p>No competitor has been assigned to this round yet.</p>
+                                <p  id="emptyList">No competitor has been assigned to this round yet.</p>
                             @endif
                             @foreach($competitors as $user)
                                 <li id="competitor{{ $user['id'] }}" class="row addCompetitorRow">
