@@ -15,7 +15,7 @@ class CompetitionController extends Controller
      */
     public function index()
     {
-        $competitions = Competition::with('rounds')->get()->reverse();
+        $competitions = Competition::with('rounds')->orderBy('year', 'desc')->get();
         
         return View::make('Competitions.index')->with([
             'competitions' => $competitions,

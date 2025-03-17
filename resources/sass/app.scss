@@ -6,3 +6,102 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+#title {
+    font-size: 22px;
+}
+
+.nav-item {
+    margin-bottom: 0;
+}
+
+.card {
+    border: none;
+    min-height: 75vh;
+}
+
+a {
+    text-decoration: none;
+    color: #074040;
+}
+
+.bi-arrow-return-left {
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #074040;
+}
+
+.nav-link {
+    color: #ffffff;
+}
+
+.card-header {
+    font-size:18px;
+    background-color: #074040;
+}
+
+.card-body {
+    background-color: #d1e7dd;
+}
+
+ul {
+    padding-left: 1em;
+}
+
+li {
+    list-style-type: none;
+    margin: 0 0 1rem;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.col-6 {
+    padding-left: 1em;
+}
+
+body {
+    background-color: #a3cfbb;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addCompetitorRow {
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.addCompetitorRow:nth-child(odd) {
+    background-color: #a3cfbb;
+}
+
+.removeBtn {
+    display: block;
+    float: right;
+}
+
+.addBtn {
+    display: block;
+    float: right;
+}
+
+.buttonColumn {
+    padding: 0;
+}

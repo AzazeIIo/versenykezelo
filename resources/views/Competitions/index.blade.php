@@ -4,9 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Competitions') }}</div>
-
+            <div class="card shadow">
+                <div class="card-header text-white">{{ __('Competitions') }}</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -15,12 +14,9 @@
                     @endif
                     @if(auth()->check() && auth()->user()->is_admin)
                         <div>
-                            You are an admin.
-                        </div>
-                        <div>
-                            <h2>New competition</h2>
-                            <div id="errorMsgContainer"></div>
-                            <form method="POST" id="newCompetitionForm">
+                            <h2 class="text-center">New competition</h2>
+                            <div id="errorMsgContainer" class="text-center"></div>
+                            <form method="POST" id="newCompetitionForm" class="m-3">
                                 @csrf
 
                                 <div class="row mb-3">
@@ -109,8 +105,8 @@
 
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
+                                <div class="row mb-0 ">
+                                    <div class="col center">
                                         <button id="submit" type="submit" class="btn btn-primary">
                                             {{ __('Create') }}
                                         </button>
@@ -119,14 +115,14 @@
                             </form>
                         </div>
                     @endif
-                    <div id="competition_list">
+                    <ul id="competition_list">
+                        @if(count($competitions) == 0)
+                            <p>There are no competitions in the database yet.</p>
+                        @endif
                         @foreach($competitions as $competition)
-                            <h3><a href="/competitions/{{$competition['id']}}/rounds">{{ $competition['name'] }} – {{ $competition['year'] }}</a></h3>
-                            @foreach($competition['rounds'] as $round)
-                                <p>Round {{$round['round_number']}} – {{$round['date']}}</p>
-                            @endforeach
+                            <li><a href="/competitions/{{$competition['id']}}/rounds">{{ $competition['name'] }} – {{ $competition['year'] }}</a></li>
                         @endforeach
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
